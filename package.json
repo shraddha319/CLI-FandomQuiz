@@ -13,6 +13,8 @@
     "chalk": "^4.1.0",
     "chalk-animation": "^1.6.0",
     "data.js": "^0.12.11",
+    "figlet": "^1.5.0",
+    "gradient-string": "^1.2.0",
     "readline-sync": "^1.4.10"
   }
 }

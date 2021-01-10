@@ -1,14 +1,16 @@
 const readlineSync = require("readline-sync");
 const chalk = require("chalk");
-const chalkAnimate = require("chalk-animation")
+const gradient = require("gradient-string");
+const figlet = require("figlet");
 
 var colorScheme = {
-	head: chalk.bold.black.bgCyanBright,
+	head: gradient.cristal,
+	tag: gradient.teen,
 	play: chalk.bold.red.bgWhite,
-	query: chalk.yellowBright,
+	query: gradient.instagram,
 	options: chalk.gray,
-	score: chalk.magentaBright,
-	highScore: chalk.greenBright
+	score: gradient.passion,
+	highScore: gradient.pastel
 };
 
 let scores = []
@@ -125,7 +127,11 @@ function displayScores(total) {
 
 
 function quiz(questions) {
-	writeOutput(colorScheme.head("\nLinux Quiz: May the source be with you.\n"));
+
+	writeOutput(colorScheme.head(figlet.textSync('LinuxQuiz!', {
+    horizontalLayout: 'full',
+	})));
+	writeOutput(colorScheme.tag("\nMay the source be with you.\n"));
 
 	let play = true;
 
@@ -134,11 +140,11 @@ function quiz(questions) {
 
 		if( play === false || play === "") {
 			console.log(colorScheme.play('K. Bye.'));
-			process.exit();
+			return;
 		}
 
 		writeOutput(colorScheme.head("\nLet's start!\n"));
-
+		console.log(colorScheme.play("\nYour user ID:" + visitCount));
 		scores.push(0);
 		visitCount++;
 		for(let i=0; i<questions.length; i++) {
@@ -152,7 +158,7 @@ function quiz(questions) {
 				writeOutput(colorScheme.play("Wrong! It's "+ questions[i].answer));
 				writeOutput(colorScheme.options(questions[i].explain));
 			}
-			writeOutput("------------------------------------------");
+			2
 		}
 
 		displayScores(questions.length);
