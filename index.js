@@ -1,8 +1,10 @@
+//loading necessary packages
 const readlineSync = require("readline-sync");
 const chalk = require("chalk");
 const gradient = require("gradient-string");
 const figlet = require("figlet");
 
+//Defining color scheme: Chalk, gradient packages used
 var colorScheme = {
 	head: gradient.cristal,
 	tag: gradient.teen,
@@ -13,10 +15,12 @@ var colorScheme = {
 	highScore: gradient.pastel
 };
 
+//variables to store quiz stats
 let scores = []
 let highScore = 0;
 let visitCount = 0;
 
+//question set for the quiz
 let questionsEasy = [{
 	query: "What command is used to count the total number of lines, words, and characters contained in a file?",
 	options: ["countw", "wcount", "wc", "count p"],
@@ -103,14 +107,17 @@ let questionsHard = [{
 
 
 function readInput(prompt) {
+	//function to read input from console
 	return readlineSync.question(prompt);
 }
 
 function writeOutput(message) {
+	//function to write output to console
 	console.log(message);
 }
 
 function displayScores(total) {
+	//Display user score, high score and leader board
 	let userScore = scores[scores.length-1];
 	writeOutput(colorScheme.score("\nYour score: " + userScore + "/"+total));
 
@@ -135,6 +142,7 @@ function quiz(questions) {
 
 	let play = true;
 
+	//Option to continue or exit
 	while(play) {
 		play = readlineSync.keyInYN(colorScheme.play('\nDo you want to play?'));
 
@@ -158,7 +166,7 @@ function quiz(questions) {
 				writeOutput(colorScheme.play("Wrong! It's "+ questions[i].answer));
 				writeOutput(colorScheme.options(questions[i].explain));
 			}
-			2
+			writeOutput("------------------------------------------");
 		}
 
 		displayScores(questions.length);
